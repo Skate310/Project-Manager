@@ -1,0 +1,16 @@
+<h1>Budget Breakdown By Tasks for <%= @project.name %></h1><br />
+<% @tasks.each do |task| %>
+<p>
+  <b><%= task.name %>:</b>
+  $<%= best_in_place task, :spent %>
+</p>
+<% end %>
+<br />
+<b>Total Project Budget:</b> $<%= best_in_place @project, :budget %>
+<br /><br /><br /><br />
+<div id="chart_div"></div>
+
+<%= content_tag "div", id: "tasks", data: { url: @tasks } do %>
+<% end %>
+<%= content_tag "div", id: "project", data: {url: @project } do %>
+<% end %>

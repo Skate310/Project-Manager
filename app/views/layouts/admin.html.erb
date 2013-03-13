@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% unless yield(:title).blank? %>
+    <title><%= (yield(:title)).to_s + "- Project Manager" %></title>
+  <% else %>
+    <title>Project Manager</title>
+  <% end %>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <br /><br />
+  <h1>Project Management Web Application</h1>
+  <div id="header">
+    <div id="user_menu">
+      <% if current_user.present? %>
+        <ul id="nav" class="drop">
+          <li><%= "#{current_user.name} v" %>
+            <ul>
+              <li><%= link_to "My Calendar", "/calendar/user/#{current_user.id}" %>
+	      <li><%= link_to "Change Password", "/users/#{current_user.id}/change_password" %></li>
+              <li><%= link_to "Logout", "/logout" %>
+            </ul>
+          </li>
+        <% else %>
+        <div id="login_bar">
+        <ul>
+          <li><%= link_to "Login", "/login" %></li>
+          <li><%= link_to "Signup", "/signup" %></li>         
+        </ul>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div id="container">
+    <div id="nav_menu">
+      <ul>
+        <li>
+          <%= form_tag sessions_path, :method => 'get', :id => 'nav_menu_search' do %>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Search", :name => nil %>
+          <% end %>
+        </li>
+        <li><%= link_to "Advanced Search", "/search" %></li>
+      </ul>
+    </div>
+    <div id="message_of_the_day">Quote of the day:</div>
+    <div id="actual_body">
+  <% if current_user.present? && current_user.role == 4 %>
+    <p id="notice"><%= notice %></p>
+    <p id="alert"><%= alert %></p>
+    <%= yield %>
+  <% else %>
+    You are not authorized to view this page!
+  <% end %>
+  </div>
+  <a href="http://localhost:3000"><div id="banner"></div></a>
+  <div id="footer"> Made by Kevin Chen, Nicole Hansen, Shabaz Gulam</div>
+  </div>
+
+
+</body>
+</html>

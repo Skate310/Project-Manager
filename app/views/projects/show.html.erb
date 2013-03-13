@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @project.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @project.description %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @project.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @project.end_date %>
+</p>
+
+<p>
+  <b>Deadline:</b>
+  <%= @project.deadline %>
+</p>
+
+<p>
+  <b>Budget:</b>
+  $<%= @project.budget %> <%= link_to 'Manage Budget', "/budget/#{@project.id}" %>
+</p>
+
+<p>
+  <%= link_to "Link to Calendar for Project", "../calendar/project/#{@project.id}" %>
+
+<p>
+  <b>Users assigned to the project</b>
+  <% for user in @project.users %>
+    <%= link_to user.name, user %>
+  <% end %>
+</p>
+
+<% if current_user.role == 4 %>
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<% end %>
+<%= link_to 'Back', "/search" %>

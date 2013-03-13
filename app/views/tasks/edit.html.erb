@@ -1,0 +1,9 @@
+<h1>Editing task</h1>
+
+<% if !(current_user.tasks.find_by_id(@task.id).nil?) || current_user.role == 4 %>
+  <%= render 'form' %>
+<% else %>
+  You have not been assigned to this task! <br />
+<% end %>
+<%= link_to 'Show', @task %> |
+<%= link_to 'Back', "/search" %>

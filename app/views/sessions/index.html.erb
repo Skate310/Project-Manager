@@ -1,0 +1,25 @@
+<% content_for :title, "Search" %>
+<h1>Search</h1>
+<%= form_tag sessions_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %><br />
+    Type: <%= select_tag :type, options_for_select([["All", "all"], ["Projects", "projects"], ["Tasks", "tasks"], ["Users", "users"]], "all") %><br />
+    Related to me: <%= check_box_tag 'user_related' %>
+  </p>
+<% end %>
+<table>
+  <tr>
+    <th>Index</th>
+  </tr>
+<% @results.each do |result| %>
+  <tr>
+    <td><%= link_to result.name, result %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @results %>
+<br />
+<% if current_user.role == 4 %>
+<%= link_to "New Project", new_project_path %> | <%= link_to "New Task", new_task_path %>
+<% end %>

@@ -1,0 +1,7 @@
+<%= calendar @tasks, {:prev_text => "prev", :next_text=>"next"} do |task| %>
+  <div><%= link_to task.name, task %>
+  <% if task.completion == true %>
+  Completed
+  <% end %>
+  </div>
+<% end %>

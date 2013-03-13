@@ -1,0 +1,47 @@
+<p>
+  <b>Project:</b> <%= link_to @task.project.name, @task.project %>
+<p>
+  <b>Name:</b>
+  <%= @task.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @task.description %>
+</p>
+
+<p>
+  <b>Completion:</b>
+  <%= @task.completion %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @task.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @task.end_date %>
+</p>
+
+<p>
+  <b>Deadline:</b>
+  <%= @task.deadline %>
+</p>
+
+<p>
+  <b>Amount of budget spent on task:</b>
+  $<%= @task.spent %>
+</p>
+
+<p>
+  <b>Users assigned to this task</b>
+  <% for user in @task.users %>
+    <%= link_to user.name, user %>
+  <% end %>
+</p>
+<% if current_user.role == 4 %>
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<% end %>
+<%= link_to 'Back', "/search" %>

@@ -1,0 +1,28 @@
+<h1>Listing projects</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Deadline</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td><%= link_to project.name, project %></td>
+    <td><%= project.deadline %></td>
+    <% if current_user.role == 4 %>
+    <td><%= link_to 'Edit', edit_project_path(project) %></td>
+    <td><%= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @projects %>
+<br />
+
+<% if current_user.role == 4 %>
+<%= link_to 'New Project', new_project_path %>
+<% end %>
