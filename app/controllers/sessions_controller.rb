@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
                 end
             end
         end
-        if params[:type] == "all" || @results.length == 0 && params[:type] == "users"
+        if params[:type] == "all"  && params[:user_related] == "1" || @results.length == 0 && params[:type] == "users"
             @results += [current_user]
         end
         @results = @results.sort_by{ |page| page.name.downcase }
