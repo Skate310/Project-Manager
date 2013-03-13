@@ -31,6 +31,12 @@
     <%= f.label :expertise %><br />
     <%= f.text_field :expertise %>
   </div>
+  <% if current_user.role == 4 || current_user.role == 8 %>
+  <div class="field">
+    <%= f.label :role %>
+    <%= select :user, :role, [["Member", 1], ["Project Manager", 4], ["Administrator", 8]] %>
+  </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

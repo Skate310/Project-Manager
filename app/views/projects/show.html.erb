@@ -40,7 +40,7 @@
   <% end %>
 </p>
 
-<% if current_user.role == 4 %>
+<% if current_user.role == 4 || current_user.role == 8 %>
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <% end %>
 <%= link_to 'Back', "/search" %>

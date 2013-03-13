@@ -35,7 +35,7 @@
     <%= f.label :deadline %><br />
     <%= f.date_select :deadline %>
   </div>
-  <% if current_user.role == 4 %>
+  <% if current_user.role == 4 || current_user.role == 8 %>
   <div class="field">
     <%= f.label 'Budget allocated' %><br />
     <%= f.number_field :spent %>

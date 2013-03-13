@@ -22,7 +22,7 @@
   <%= link_to "View Task Calendar for User", "../calendar/user/#{@user.id}" %>
 </p>
 
-<% if current_user.role == 4 %>
+<% if current_user.role == 4 || @user = current_user || current_user.role == 8 %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <% end %>
 <%= link_to 'Back', "/search" %>

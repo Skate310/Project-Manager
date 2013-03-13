@@ -20,6 +20,6 @@
 </table>
 <%= will_paginate @results %>
 <br />
-<% if !current_user.nil? && current_user.role == 4 %>
+<% if !current_user.nil? && current_user.role == 4 || !current_user.nil? && current_user.role == 8 %>
 <%= link_to "New Project", new_project_path %> | <%= link_to "New Task", new_task_path %>
 <% end %>

@@ -20,11 +20,23 @@
         <ul id="nav" class="drop">
           <li><%= "#{current_user.name} v" %>
             <ul>
-              <li><%= link_to "My Calendar", "/calendar/user/#{current_user.id}" %>
+              <li><%= link_to "My Calendar", "/calendar/user/#{current_user.id}" %></li>
 	      <li><%= link_to "Change Password", "/users/#{current_user.id}/change_password" %></li>
-              <li><%= link_to "Logout", "/logout" %>
+              <li><%= link_to "Logout", "/logout" %></li>
             </ul>
           </li>
+	</ul>
+	<% if current_user.role == 4 || current_user.role == 8 %>
+	  <ul id="nav" class="drop">
+	    <li>Admin v
+	      <ul>
+		<li><%= link_to "Projects Management", projects_path %></li>
+		<li><%= link_to "Tasks Management", tasks_path %></li>
+		<li><%= link_to "User Management", users_path %></li>
+	      </ul>
+	    </li>
+	  </ul>
+	<% end %>
         <% else %>
         <div id="login_bar">
         <ul>

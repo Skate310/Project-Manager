@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  respond_to :html, :js
   layout :determine_layout
   # GET /users
   # GET /users.json
@@ -59,14 +60,13 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
       @user = User.find(params[:id])
-    
-      if params[:commit] == "Update" || params[:commit] == "Change Password" && @user.authenticate(params[:password])
+      if params[:commit] == "Update User" || params[:commit] == "Change Password" && @user.authenticate(params[:password])
         respond_to do |format|
             if @user.update_attributes(params[:user])
                 format.html { redirect_to @user, :notice => 'User was successfully updated.' }
                 format.json { head :no_content }
             else
-                if params[:commit] == "Update"
+                if params[:commit] == "Update User"
                     format.html { render :action => "edit" }
                     format.json { render :json => @user.errors, :status => :unprocessable_entity }
                 elsif params[:commit] == "Change Password"

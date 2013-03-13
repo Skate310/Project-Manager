@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
-
+    @project.spent_budget = 0
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, :notice => 'Project was successfully created.' }
