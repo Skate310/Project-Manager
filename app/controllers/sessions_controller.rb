@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
         if params[:type] == "all" || params[:type].nil?
             @results = Project.search(params[:search])
             @results << Task.search(params[:search])
-            if params[:user_related] == "0"
+            if params[:user_related] == "0" || params[:user_related].nil?
                 @results << User.search(params[:search])
             end
         elsif params[:type] == "projects"
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
         end
         @results = @results.flatten
         if params[:user_related] == "1"
-        #    @results = @results.where(:user_ids => current_user.id)
+        #   If you type in name in search, returns blank, fix it
             for result in @results
                 if !result.users.index(current_user)
                     @results.delete(result)
