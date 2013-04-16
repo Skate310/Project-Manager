@@ -1,5 +1,5 @@
 <h1>Editing user</h1>
-<% if current_user.id == @user.id || current_user.role == 4 %>
+<% if current_user.id == @user.id || current_user.role == 4 || current_user.role == 8 %>
   <%= render 'form' %>
 <% else %>
   This is not your profile page<br />

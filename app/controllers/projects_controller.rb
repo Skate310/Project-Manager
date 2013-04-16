@@ -88,7 +88,7 @@ class ProjectsController < ApplicationController
     
   private
     def determine_layout
-      if ["edit"].include?(action_name) || ["new"].include?(action_name) || ["budget"].include?(action_name)
+      if ["edit"].include?(action_name) || ["new"].include?(action_name)
         "admin"
       else
         "application"

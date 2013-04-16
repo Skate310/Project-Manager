@@ -13,6 +13,6 @@ class Task < ActiveRecord::Base
             where('name LIKE ?', "%#{search}%")
         else
             scoped
-end
+        end
     end
 end

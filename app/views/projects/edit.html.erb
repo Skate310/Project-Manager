@@ -1,6 +1,8 @@
 <h1>Editing project</h1>
-
-<%= render 'form' %>
-
+<% if current_user.role == 4 && current_user.projects.find_by_id(@project.id) || current_user.role == 8 %>
+  <%= render 'form' %>
+<% else %>
+  This is not your project.<br />
+<% end %>
 <%= link_to 'Show', @project %> |
 <%= link_to 'Back', "/search" %>

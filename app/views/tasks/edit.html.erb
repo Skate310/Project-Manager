@@ -1,6 +1,6 @@
 <h1>Editing task</h1>
 
-<% if !(current_user.tasks.find_by_id(@task.id).nil?) || current_user.role == 4 %>
+<% if !(current_user.tasks.find_by_id(@task.id).nil?) || current_user.role == 4 && current_user.projects.find_by_id(@task.project.id) || current_user.role == 8 %>
   <%= render 'form' %>
 <% else %>
   You have not been assigned to this task! <br />

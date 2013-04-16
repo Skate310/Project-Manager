@@ -48,15 +48,18 @@ class TasksController < ApplicationController
     @task = Task.new(params[:task])
     respond_to do |format|
       if @task.save
-        if @task.project.spent_budget + @task.spent <= @task.project.budget
-          @task.project.spent_budget += @task.spent
+        if @task.project.spent_budget.to_i + @task.spent.to_i <= @task.project.budget
+          @task.project.spent_budget = @task.project.spent_budget.to_i + @task.spent.to_i
           @task.project.save
           format.html { redirect_to @task, :notice => 'Task was successfully created.' }
           format.json { render :json => @task, :status => :created, :location => @task }
         else
-          @task.spent = 0
-          format.html { render :action => "new", :notice => 'Budget higher than Project budget' }
-            format.json { render :json => @task.errors, :status => :unprocessable_entity }
+          @users = User.all
+          @projects = Project.all
+          @task.destroy
+          flash[:notice] = "Budget higher than Project budget"
+          format.html { render :action => "new" }
+          format.json { render :json => @task.errors, :status => :unprocessable_entity }
         end
       else
         format.html { render :action => "new" }

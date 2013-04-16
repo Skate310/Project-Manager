@@ -19,13 +19,14 @@
         <ul id="nav" class="drop">
           <li><%= "#{current_user.name} v" %>
             <ul>
+	      <li><%= link_to "Home", "/" %></li>
               <li><%= link_to "My Calendar", "/calendar/user/#{current_user.id}" %></li>
 	      <li><%= link_to "Change Password", "/users/#{current_user.id}/change_password" %></li>
               <li><%= link_to "Logout", "/logout" %></li>
             </ul>
           </li>
 	</ul>
-	<% if current_user.role == 4 || current_user.role == 8 %>
+	<% if current_user.role == 8 %>
 	  <ul id="nav" class="drop">
 	    <li>Admin v
 	      <ul>
@@ -58,7 +59,7 @@
         <li><%= link_to "Advanced Search", "/search" %></li>
       </ul>
     </div>
-    <div id="message_of_the_day">Quote of the day: </div>
+    <div id="message_of_the_day"></div>
   <div id="actual_body">
     <p id="notice"><%= notice %></p>
     <p id="alert"><%= alert %></p>

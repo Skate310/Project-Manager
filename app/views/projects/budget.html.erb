@@ -1,3 +1,4 @@
+<% if current_user.present? && current_user.role == 4 && current_user.projects.find_by_id(@project.id) || current_user.present? && current_user.role == 8 %>
 <h1>Budget Breakdown By Tasks for <%= @project.name %></h1><br />
 <% @tasks.each do |task| %>
 <p>
@@ -13,4 +14,7 @@
 <%= content_tag "div", id: "tasks", data: { url: @tasks } do %>
 <% end %>
 <%= content_tag "div", id: "project", data: {url: @project } do %>
+<% end %>
+<% else %>
+You are not authorized to view this page.
 <% end %>

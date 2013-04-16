@@ -1,5 +1,57 @@
 <h1>New task</h1>
 
-<%= render 'form' %>
+<%= form_for(@task) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label 'Completed' %><br />
+    <%= f.check_box :completion %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :deadline %><br />
+    <%= f.date_select :deadline %>
+  </div>
+  <div class="field">
+    <%= f.label 'Budget allocated' %><br />
+    <%= f.number_field :spent %>
+  </div>
+  <div class="field">
+    <%= label_tag "Users assigned to task" %><br />
+    <%= collection_select(:task, :user_ids, @users, :id, :name, {:include_blank => true}, { :multiple => true, :name => 'task[user_ids][]' }) %>
+  </div>
+  <div class="field">
+    <%= label_tag "Project assigned to" %><br />
+    <%= collection_select(:task, :project_id, @projects, :id, :name) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Back', "/search" %>

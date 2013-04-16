@@ -1,13 +1,15 @@
 <% content_for :title, "Log In" %>
 	<% if !current_user %>
-		Log In
+		<h1>Log In<br /></h1>
+	<div id="login_box">
 	<%= form_tag sessions_path do %>
-		<%= label_tag 'Email:' %>
+		<%= label_tag 'Email:' %><br />
 		<%= text_field_tag :email, params[:email] %><br />
-		<%= label_tag 'Password:' %>
-		<%= password_field_tag :password %>
+		<%= label_tag 'Password:' %><br />
+		<%= password_field_tag :password %><br />
 		<%= submit_tag "Log In" %> or <b><%= link_to 'Sign Up', "/signup" %></b>	<% end %>
 	<%= link_to 'Forgot Password', "/forgot_password" %>
+	</div>
 	<% else %>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac feugiat leo. Curabitur turpis urna, laoreet ac tristique quis, ultrices at nisi. Donec quis tristique magna. Nam magna diam, tincidunt imperdiet feugiat ac, rhoncus non nulla. Praesent vitae tortor dolor. In hac habitasse platea dictumst. Mauris vitae dolor sapien. Fusce felis tortor, blandit vel fermentum nec, scelerisque vitae neque. Phasellus et lectus vel mauris tempor fringilla quis in tortor. Duis cursus gravida lorem a tempus. Pellentesque tortor lectus, imperdiet eleifend venenatis non, euismod eu elit. Fusce suscipit nunc a nunc dapibus consectetur.<br /><br />
 
