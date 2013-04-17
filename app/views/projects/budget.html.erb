@@ -9,6 +9,7 @@
 <br />
 <b>Total Project Budget:</b> $<%= best_in_place @project, :budget %>
 <br /><br /><br /><br />
+<%= button_to 'Regenerate Pie Chart', "/budget/#{@project.id}" %>
 <div id="chart_div"></div>
 
 <%= content_tag "div", id: "tasks", data: { url: @tasks } do %>

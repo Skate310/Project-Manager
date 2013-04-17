@@ -97,6 +97,7 @@ class TasksController < ApplicationController
           end
       else
         @task.project.spent_budget = @task.project.spent_budget.to_f + saved_spent
+        @task.spent = saved_spent
         @task.project.save
         format.html { render :action => "edit" }
         format.json { render :json => @task.errors, :status => :unprocessable_entity }
