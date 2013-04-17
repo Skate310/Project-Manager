@@ -28,7 +28,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @users = User.all
-    @projects = Project.all
+    @projects = current_user.projects
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @task }
@@ -39,7 +39,7 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find(params[:id])
     @users = User.all
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
   # POST /tasks
@@ -55,7 +55,7 @@ class TasksController < ApplicationController
           format.json { render :json => @task, :status => :created, :location => @task }
         else
           @users = User.all
-          @projects = Project.all
+          @projects = current_user.projects
           @task.destroy
           flash[:notice] = "Budget higher than Project budget"
           format.html { render :action => "new" }
@@ -72,7 +72,7 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     @users = User.all
-    @projects = Project.all
+    @projects = current_user.projects
     @task = Task.find(params[:id])
     saved_spent = @task.spent
     @task.project.spent_budget = @task.project.spent_budget.to_f - saved_spent
@@ -118,10 +118,6 @@ class TasksController < ApplicationController
     
   private
     def determine_layout
-      if ["new"].include?(action_name)
-        "admin"
-      else
         "application"
-      end
     end
 end
