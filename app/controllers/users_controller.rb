@@ -107,10 +107,11 @@ class UsersController < ApplicationController
     
   private
     def determine_layout
-      if ["new"].include?(action_name)
+      if ["new"].include?(action_name) || ["create"].include?(action_name)
         "public"
       else
-        "application"
+          "application"
+          #"public"
       end
     end
 end
