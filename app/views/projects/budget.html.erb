@@ -1,4 +1,5 @@
 <% if current_user.present? && current_user.role == 4 && current_user.projects.find_by_id(@project.id) || current_user.present? && current_user.role == 8 %>
+Instructions: To change the amount a task costs/the project's budget click on the value next to the name to open a textbox that you can use to modify the value.  Hit the enter key when you are finished to store the value.  The value will revert to the previous value if the cost of all the tasks exceeds the project's budget.
 <h1>Budget Breakdown By Tasks for <%= @project.name %></h1><br />
 <% @tasks.each do |task| %>
 <p>
