@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
             #@results = @results.users.where(:id => current_user.id)
         elsif params[:type] == "tasks"
             @results = Task.search(params[:search])
-        elsif params[:type] == "users" && params[:user_related] == "0"
+        elsif params[:type] == "users" && params[:user_related].nil?
             @results = User.search(params[:search])
         else
             @results = []
